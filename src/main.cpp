@@ -1,12 +1,12 @@
 #include <iostream>
-#include "opengl_base.h"
+#include "triangle.h"
 
 int main()
 {
-	OpenGLBase openGLBase;
+	Triangle triangle;
 	try
 	{
-		openGLBase.run();
+		triangle.run();
 	}
 	catch(const std::exception& e)
 	{

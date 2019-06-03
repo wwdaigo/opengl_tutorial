@@ -4,7 +4,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
 	src/main.cpp
-	src/opengl_base.cpp)
+	src/opengl_base.cpp
+	src/triangle.cpp)
 
 include_directories(include)
 

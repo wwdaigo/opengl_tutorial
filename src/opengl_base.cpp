@@ -40,6 +40,7 @@ void OpenGLBase::mainLoop()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
+		draw();
 		glfwSwapBuffers(window);
 	}
 }

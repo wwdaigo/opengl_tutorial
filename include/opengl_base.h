@@ -8,7 +8,7 @@ class OpenGLBase
 {
 public:
 	void run();
-
+	virtual void draw() const = 0;
 private:
 	GLFWwindow* window;
 
