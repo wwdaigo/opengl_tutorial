@@ -22,7 +22,7 @@ void OpenGLBase::createWindow()
 	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Learn OpenGL", nullptr, nullptr);
 	if (window == nullptr)
 	{
-		std::cout << "Failed to create GLFW window" << std::endl;
+		throw std::runtime_error("Failed to create GLFW window");
 		glfwTerminate();
 	}
 	glfwMakeContextCurrent(window);
@@ -30,7 +30,7 @@ void OpenGLBase::createWindow()
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		std::cout << "Failed to initialize GLEW" << std::endl;
+		throw std::runtime_error("Failed to initialize GLEW");
 	}
 	glViewport(0, 0, 800, 600);
 }
