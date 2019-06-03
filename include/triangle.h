@@ -3,5 +3,9 @@
 class Triangle : public OpenGLBase
 {
 public:
-	void draw() const;
+	void draw();
+
+private:
+	void setBgColor();
+	void drawTriangle();
 };

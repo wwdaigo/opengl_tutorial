@@ -8,12 +8,12 @@ class OpenGLBase
 {
 public:
 	void run();
-	virtual void draw() const = 0;
+	virtual void draw() = 0;
 private:
 	GLFWwindow* window;
 
-	static const int WINDOW_WIDTH = 800;
-	static const int WINDOW_HEIGHT = 600;
+	static const GLuint WINDOW_WIDTH = 800;
+	static const GLuint WINDOW_HEIGHT = 600;
 	static const int WINDOW_RESIZE = GL_FALSE;
 
 	void initOpenGL();
