@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/opengl_basic.dir/src/main.cpp.o  -o opengl_basic -lglfw 

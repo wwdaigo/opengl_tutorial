@@ -1,3 +1,0 @@
-/home.net/dm18was/Documents/openGL/build/CMakeFiles/rebuild_cache.dir
-/home.net/dm18was/Documents/openGL/build/CMakeFiles/opengl_basic.dir
-/home.net/dm18was/Documents/openGL/build/CMakeFiles/edit_cache.dir
