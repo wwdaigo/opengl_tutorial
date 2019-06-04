@@ -29,6 +29,11 @@ void Triangle::drawTriangle()
 	GLuint VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	
+	GLuint VAO;
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	// 3 - Compile the Vertex Shader
@@ -69,4 +74,7 @@ void Triangle::drawTriangle()
 	glEnableVertexAttribArray(0);
 
 	glUseProgram(shaderProgram);
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0 ,3);
+	glBindVertexArray(0);
 }
