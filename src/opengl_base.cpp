@@ -10,9 +10,12 @@ void OpenGLBase::run()
 
 void OpenGLBase::initOpenGL()
 {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR ,3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR ,3);
+    if(!glfwInit())
+    {
+        throw std::runtime_error("Failed to initialize glfw");
+    }
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE ,GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, WINDOW_RESIZE);
 }
@@ -23,7 +26,6 @@ void OpenGLBase::createWindow()
 	if (window == nullptr)
 	{
 		throw std::runtime_error("Failed to create GLFW window");
-		glfwTerminate();
 	}
 	glfwMakeContextCurrent(window);
 
