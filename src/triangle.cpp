@@ -15,6 +15,38 @@ void Triangle::setBgColor()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
+void Triangle::compileVertexShader()
+{
+	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	glCompileShader(vertexShader);
+
+	debugShaderCompilation(vertexShader, "ERROR::SHADER::VERTEX::COMPILATION_FAILED");
+}
+
+void Triangle::compileFragmentShader()
+{
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	glCompileShader(fragmentShader);
+
+	debugShaderCompilation(fragmentShader, "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED");
+}
+
+void Triangle::debugShaderCompilation(GLuint shader, std::string tag)
+{
+	GLint success;
+	GLchar infoLog [512];
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+	if (!success)
+	{
+		glGetShaderInfoLog(shader, 512, NULL, infoLog);
+		std::stringstream ss;
+		ss << tag << std::endl << infoLog << std::endl;
+		throw std::runtime_error(ss.str());
+	}
+}
+
 void Triangle::drawTriangle()
 {
 	// 1- define the vertices of triangle, following x, y, z coordinates from -1 to 1 for each vertex.
@@ -36,28 +68,10 @@ void Triangle::drawTriangle()
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	// 3 - Compile the Vertex Shader
-	GLuint vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	GLint success;
-	GLchar infoLog [512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::stringstream ss;
-		ss << "ERROR::SHADER::VERTEX::COMPILATION_FAILED" << std::endl << infoLog << std::endl;
-		throw std::runtime_error(ss.str());
-	}
-
-	// 4 - Compile the fragment shader
-	GLuint fragmentShader;
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
+	// Shaders process
+	compileVertexShader();
+	compileFragmentShader();
+		
 
 	// 5 - Create the shader program
 	GLuint shaderProgram;
