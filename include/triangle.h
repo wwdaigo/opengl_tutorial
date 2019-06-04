@@ -7,8 +7,10 @@ public:
 
 private:
 	const static GLfloat vertices[];
+	const static GLfloat quadVertices[];
+	const static GLuint quadVertexIndices[];
 
-	GLuint VBO, VAO;
+	GLuint VBO, VAO, EBO;
 	GLuint vertexShader;
 	GLuint fragmentShader;
 	GLuint shaderProgram;
@@ -17,6 +19,7 @@ private:
 
 	// Vertex array buffer
 	void setupVertexArrayBuffer();
+	void setupVertexArrayBufferQuad();
 
 	// Shaders
 	void compileVertexShader();
@@ -28,6 +31,11 @@ private:
 	// Rendering
 	void linkVertexAttributes();
 	void renderTriangle();
+	void renderQuad();
 
 	void runPipeline();
+	void runQuadPipeline();
+
+	// Cleanup
+	void cleanupBuffers();
 };
